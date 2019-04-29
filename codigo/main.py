@@ -11,9 +11,11 @@ import json
 import multiprocessing
 from pomdp_runner import PomdpRunner
 from pomdp_runner_interactive import PomdpRunnerInteractive
+from pomdp_runner_interactive_tag import PomdpRunnerInteractiveTag
 from pomdp_runner_silenciosa import PomdpRunnerSilenciosa
 from pomdp_runner_silenciosa_tag import PomdpRunnerSilenciosaTag
 from pomdp_runner_benchmark import PomdpRunnerBenchmark
+from pomdp_runner_benchmark_tag import PomdpRunnerBenchmarkTag
 from util import RunnerParams
 
 def eligeProblema():
@@ -197,7 +199,7 @@ def tagPomcpInteractiva():
     
     with open(params.algo_config) as algo_config:
         algo_params = json.load(algo_config)
-        runner = PomdpRunnerInteractive(params)
+        runner = PomdpRunnerInteractiveTag(params)
         runner.run(**algo_params)
     
 def tagPomcpSilenciosa():
@@ -217,11 +219,11 @@ def tagPomcpBenchmark():
     listaPasos = []
     listaRecompensas = []
     for i in range(30):
-        params = RunnerParams("tag.POMDP",None,"pomcp",float('inf'),30,False,False)
+        params = RunnerParams("tag.POMDP",None,"pomcp",float('inf'),50,False,False)
 
         with open(params.algo_config) as algo_config:
             algo_params = json.load(algo_config)
-            runner = PomdpRunnerBenchmark(params)
+            runner = PomdpRunnerBenchmarkTag(params)
             a = runner.run(**algo_params)
        
         pasos += a[0]

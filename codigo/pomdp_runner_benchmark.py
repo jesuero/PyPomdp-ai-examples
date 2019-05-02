@@ -101,7 +101,12 @@ class PomdpRunnerBenchmark:
             
             if action == 'open-right' or action == 'open-left':
                 break
-
+            
+            if new_state == '48':
+                break
+            
+            if new_state == 'less-5':
+                break
 
        ## log.info('{} games played. Total reward = {}'.format(i + 1, total_rewards))
         return i+1, total_rewards

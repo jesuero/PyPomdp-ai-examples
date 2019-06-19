@@ -102,7 +102,7 @@ class PomdpRunnerBenchmark:
             if action == 'open-right' or action == 'open-left':
                 break
             
-            if new_state == '48':
+            if action == 'adv-skates' or action == 'adv-ties':
                 break
             
             if new_state == 'less-5':

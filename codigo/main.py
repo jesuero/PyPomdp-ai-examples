@@ -22,7 +22,7 @@ def eligeProblema():
     print("Problema a resolver:")
     print("Problema del tigre")
     print("Problema del tag")
-    print("Problema del grid")
+    print("Problema de los anuncios")
     print("Problema del puente")
     
 def tigre():
@@ -88,22 +88,11 @@ def tigrePomcpBenchmark():
     mediaPasos = pasos/30
     mediaRecompensa = recompensa/30
     desviaciones = calculaDesviacionTipica(listaPasos,listaRecompensas,mediaPasos,mediaRecompensa)
-    
+    print('=========================================================================')
     print('Media de pasos: {}'.format(mediaPasos))
     print('Recompensa media: {}'.format(mediaRecompensa))
     print('Desviación típica pasos: {}'.format(desviaciones[0]))
     print('Desviación típica recompensas: {}'.format(desviaciones[1]))
-        
-def calculaDesviacionTipica(listaPasos,listaRecompensas,mediaPasos,mediaRecompensa):
-    sumatorioPasos = 0
-    sumatorioRecompensa = 0
-    for i in range(30):
-        sumatorioPasos += pow(listaPasos[i]-mediaPasos,2)
-        sumatorioRecompensa += pow(listaRecompensas[i]-mediaRecompensa,2)
-    
-    desviacionPasos = math.sqrt(sumatorioPasos/30)
-    desviacionRecompensa = math.sqrt(sumatorioRecompensa/30)  
-    return desviacionPasos,desviacionRecompensa
         
 def  tigreSimulacionPbvi():
     tipoSimulacionPbvi = input("Escribe si quieres simulación interactiva, silenciosa o benchmark: ")
@@ -158,7 +147,7 @@ def tigrePbviBenchmark():
     mediaPasos = pasos/30
     mediaRecompensa = recompensa/30
     desviaciones = calculaDesviacionTipica(listaPasos,listaRecompensas,mediaPasos,mediaRecompensa)
-    
+    print('=========================================================================')
     print('Media de pasos: {}'.format(mediaPasos))
     print('Recompensa media: {}'.format(mediaRecompensa))
     print('Desviación típica pasos: {}'.format(desviaciones[0]))
@@ -236,7 +225,7 @@ def tagPomcpBenchmark():
     mediaPasos = pasos/30
     mediaRecompensa = recompensa/30
     desviaciones = calculaDesviacionTipica(listaPasos,listaRecompensas,mediaPasos,mediaRecompensa)
-    
+    print('=========================================================================')
     print('Media de pasos: {}'.format(mediaPasos))
     print('Recompensa media: {}'.format(mediaRecompensa))
     print('Desviación típica pasos: {}'.format(desviaciones[0]))
@@ -286,59 +275,59 @@ def tagPbviBenchmark():
     mediaPasos = pasos/30
     mediaRecompensa = recompensa/30
     desviaciones = calculaDesviacionTipica(listaPasos,listaRecompensas,mediaPasos,mediaRecompensa)
-    
+    print('=========================================================================')
     print('Media de pasos: {}'.format(mediaPasos))
     print('Recompensa media: {}'.format(mediaRecompensa))
     print('Desviación típica pasos: {}'.format(desviaciones[0]))
     print('Desviación típica recompensas: {}'.format(desviaciones[1]))
     
-def grid():
-      print("Has seleccionado el problema del grid")
+def anuncio():
+      print("Has seleccionado el problema de los anuncios")
       alg = input("Escribe el nombre del algoritmo por el cual quieres resolverlo (POMCP o PBVI): ")
       if alg == "POMCP":
-          print("Vas a resolver el problema del grid mediante el algoritmo POMCP")
-          gridSimulacionPomcp()
+          print("Vas a resolver el problema de los anuncios mediante el algoritmo POMCP")
+          anuncioSimulacionPomcp()
       if alg == "PBVI":    
-           print("Vas a resolver el problema del grid mediante el algoritmo PBVI")
-           gridSimulacionPbvi()
+           print("Vas a resolver el problema de los anuncios mediante el algoritmo PBVI")
+           anuncioSimulacionPbvi()
            
-def gridSimulacionPomcp():
+def anuncioSimulacionPomcp():
     tipoSimulacion = input("Escribe si quieres simulación interactiva, silenciosa o benchmark: ")
     if tipoSimulacion == "interactiva":
-        gridPomcpInteractiva()
+        anuncioPomcpInteractiva()
     if tipoSimulacion == "silenciosa":
-        gridPomcpSilenciosa()
+        anuncioPomcpSilenciosa()
     if tipoSimulacion == "benchmark":
-        gridPomcpBenchmark()
+        anuncioPomcpBenchmark()
         
-def gridPomcpInteractiva():
-    print("Has seleccionado ejecución interactiva con POMCP para el Problema del Grid")
+def anuncioPomcpInteractiva():
+    print("Has seleccionado ejecución interactiva con POMCP para el Problema de los anuncios")
     
-    params = RunnerParams("GridWorld.POMDP",None,"pomcp",float('inf'),10,False,False)
+    params = RunnerParams("anuncios.POMDP",None,"pomcp",float('inf'),10,False,False)
     
     with open(params.algo_config) as algo_config:
         algo_params = json.load(algo_config)
         runner = PomdpRunnerInteractive(params)
         runner.run(**algo_params)
     
-def gridPomcpSilenciosa():
-    print("Has seleccionado ejecución silenciosa con POMCP para el Problema del Grid")
+def anuncioPomcpSilenciosa():
+    print("Has seleccionado ejecución silenciosa con POMCP para el Problema de los anuncios")
     
-    params = RunnerParams("GridWorld.POMDP",None,"pomcp",float('inf'),100,False,False)
+    params = RunnerParams("anuncios.POMDP",None,"pomcp",float('inf'),100,False,False)
 
     with open(params.algo_config) as algo_config:
         algo_params = json.load(algo_config)
         runner = PomdpRunnerSilenciosa(params)
         runner.run(**algo_params)
         
-def gridPomcpBenchmark():
-    print("Has seleccionado ejecución benchmark con POMCP para el Problema del Grid")
+def anuncioPomcpBenchmark():
+    print("Has seleccionado ejecución benchmark con POMCP para el Problema de los anuncios")
     pasos = 0
     recompensa = 0
     listaPasos = []
     listaRecompensas = []
     for i in range(30):
-        params = RunnerParams("GridWorld.POMDP",None,"pomcp",float('inf'),30,False,False)
+        params = RunnerParams("anuncios.POMDP",None,"pomcp",float('inf'),30,False,False)
 
         with open(params.algo_config) as algo_config:
             algo_params = json.load(algo_config)
@@ -355,51 +344,49 @@ def gridPomcpBenchmark():
     mediaPasos = pasos/30
     mediaRecompensa = recompensa/30
     desviaciones = calculaDesviacionTipica(listaPasos,listaRecompensas,mediaPasos,mediaRecompensa)
-    
+    print('=========================================================================')
     print('Media de pasos: {}'.format(mediaPasos))
     print('Recompensa media: {}'.format(mediaRecompensa))
     print('Desviación típica pasos: {}'.format(desviaciones[0]))
     print('Desviación típica recompensas: {}'.format(desviaciones[1]))
         
-
-        
-def  gridSimulacionPbvi():
+def anuncioSimulacionPbvi():
     tipoSimulacionPbvi = input("Escribe si quieres simulación interactiva, silenciosa o benchmark: ")
     if tipoSimulacionPbvi == "interactiva":
-        gridPbviInteractiva()
+        anuncioPbviInteractiva()
     if tipoSimulacionPbvi == "silenciosa":
-        gridPbviSilenciosa()
+        anuncioPbviSilenciosa()
     if tipoSimulacionPbvi == "benchmark":
-        gridPbviBenchmark()
+        anuncioPbviBenchmark()
         
-def gridPbviInteractiva():
-    print("Has seleccionado ejecución interactiva con PBVI para el Problema del Grid")
+def anuncioPbviInteractiva():
+    print("Has seleccionado ejecución interactiva con PBVI para el Problema de los anuncios")
      
-    params = RunnerParams("GridWorld.POMDP",None,"pbvi",float('inf'),10,False,False)
+    params = RunnerParams("anuncios.POMDP",None,"pbvi",float('inf'),10,False,False)
 
     with open(params.algo_config) as algo_config:
         algo_params = json.load(algo_config)
         runner = PomdpRunnerInteractive(params)
         runner.run(**algo_params)
         
-def gridPbviSilenciosa():
-    print("Has seleccionado ejecución silenciosa con PBVI para el Problema del Grid")
+def anuncioPbviSilenciosa():
+    print("Has seleccionado ejecución silenciosa con PBVI para el Problema de los anuncios")
     
-    params = RunnerParams("GridWorld.POMDP",None,"pbvi",float('inf'),100,False,False)
+    params = RunnerParams("anuncios.POMDP",None,"pbvi",float('inf'),100,False,False)
 
     with open(params.algo_config) as algo_config:
         algo_params = json.load(algo_config)
         runner = PomdpRunnerSilenciosa(params)
         runner.run(**algo_params)
         
-def gridPbviBenchmark():
-    print("Has seleccionado ejecución benchmark con PBVI para el Problema del Grid")
+def anuncioPbviBenchmark():
+    print("Has seleccionado ejecución benchmark con PBVI para el Problema de los anuncios")
     pasos = 0
     recompensa = 0
     listaPasos = []
     listaRecompensas = []
     for i in range(30):
-        params = RunnerParams("GridWorld.POMDP",None,"pbvi",float('inf'),30,False,False)
+        params = RunnerParams("anuncios.POMDP",None,"pbvi",float('inf'),30,False,False)
 
         with open(params.algo_config) as algo_config:
             algo_params = json.load(algo_config)
@@ -416,12 +403,11 @@ def gridPbviBenchmark():
     mediaPasos = pasos/30
     mediaRecompensa = recompensa/30
     desviaciones = calculaDesviacionTipica(listaPasos,listaRecompensas,mediaPasos,mediaRecompensa)
-    
+    print('=========================================================================')    
     print('Media de pasos: {}'.format(mediaPasos))
     print('Recompensa media: {}'.format(mediaRecompensa))
     print('Desviación típica pasos: {}'.format(desviaciones[0]))
     print('Desviación típica recompensas: {}'.format(desviaciones[1]))
-
     
 def puente():
       print("Has seleccionado el problema del puente")
@@ -486,14 +472,12 @@ def puentePomcpBenchmark():
     mediaPasos = pasos/30
     mediaRecompensa = recompensa/30
     desviaciones = calculaDesviacionTipica(listaPasos,listaRecompensas,mediaPasos,mediaRecompensa)
-    
+    print('=========================================================================')   
     print('Media de pasos: {}'.format(mediaPasos))
     print('Recompensa media: {}'.format(mediaRecompensa))
     print('Desviación típica pasos: {}'.format(desviaciones[0]))
     print('Desviación típica recompensas: {}'.format(desviaciones[1]))
-        
-
-        
+              
 def  puenteSimulacionPbvi():
     tipoSimulacionPbvi = input("Escribe si quieres simulación interactiva, silenciosa o benchmark: ")
     if tipoSimulacionPbvi == "interactiva":
@@ -547,11 +531,23 @@ def puentePbviBenchmark():
     mediaPasos = pasos/30
     mediaRecompensa = recompensa/30
     desviaciones = calculaDesviacionTipica(listaPasos,listaRecompensas,mediaPasos,mediaRecompensa)
-    
+    print('=========================================================================')    
     print('Media de pasos: {}'.format(mediaPasos))
     print('Recompensa media: {}'.format(mediaRecompensa))
     print('Desviación típica pasos: {}'.format(desviaciones[0]))
     print('Desviación típica recompensas: {}'.format(desviaciones[1]))
+    
+def calculaDesviacionTipica(listaPasos,listaRecompensas,mediaPasos,mediaRecompensa):
+    sumatorioPasos = 0
+    sumatorioRecompensa = 0
+    for i in range(30):
+        sumatorioPasos += pow(listaPasos[i]-mediaPasos,2)
+        sumatorioRecompensa += pow(listaRecompensas[i]-mediaRecompensa,2)
+    
+    desviacionPasos = math.sqrt(sumatorioPasos/30)
+    desviacionRecompensa = math.sqrt(sumatorioRecompensa/30)  
+    return desviacionPasos,desviacionRecompensa
+    
 if __name__ == '__main__':
     eligeProblema()
     problema = input("Escribe el nombre del problema que quieres resolver: ")
@@ -559,9 +555,7 @@ if __name__ == '__main__':
         tigre()
     if problema == "Problema del tag":
         tag()
-    if problema == "Problema del grid":
-        grid()
+    if problema == "Problema de los anuncios":
+        anuncio()
     if problema == "Problema del puente":
         puente()
-    else:
-        print("Error, ha escrito mal el nombre del problema")

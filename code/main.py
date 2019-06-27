@@ -194,7 +194,7 @@ def tagPomcpInteractiva():
 def tagPomcpSilenciosa():
     print("Has seleccionado ejecución silenciosa con POMCP para el Problema del Tag")
     
-    params = RunnerParams("tag.POMDP",None,"pomcp",float('inf'),500,False,False)
+    params = RunnerParams("tag.POMDP",None,"pomcp",float('inf'),100,False,False)
 
     with open(params.algo_config) as algo_config:
         algo_params = json.load(algo_config)
@@ -208,7 +208,7 @@ def tagPomcpBenchmark():
     listaPasos = []
     listaRecompensas = []
     for i in range(30):
-        params = RunnerParams("tag.POMDP",None,"pomcp",float('inf'),30,False,False)
+        params = RunnerParams("tag.POMDP",None,"pomcp",float('inf'),100,False,False)
 
         with open(params.algo_config) as algo_config:
             algo_params = json.load(algo_config)
@@ -244,7 +244,7 @@ def tagPbviInteractiva():
 def tagPbviSilenciosa():
     print("Has seleccionado ejecución silenciosa con PBVI para el Problema del Tag")
     
-    params = RunnerParams("tag.POMDP",None,"pbvi",float('inf'),500,False,False)
+    params = RunnerParams("tag.POMDP",None,"pbvi",float('inf'),100,False,False)
 
     with open(params.algo_config) as algo_config:
         algo_params = json.load(algo_config)
@@ -258,7 +258,7 @@ def tagPbviBenchmark():
     listaPasos = []
     listaRecompensas = []
     for i in range(30):
-        params = RunnerParams("tag.POMDP",None,"pbvi",float('inf'),30,False,False)
+        params = RunnerParams("tag.POMDP",None,"pbvi",float('inf'),100,False,False)
 
         with open(params.algo_config) as algo_config:
             algo_params = json.load(algo_config)

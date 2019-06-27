@@ -5,7 +5,7 @@ from solvers import POMCP, PBVI
 from parsers import PomdpParser, GraphViz
 from logger import Logger as log
 
-class PomdpRunnerInteractive:
+class PomdpRunnerInteractiveTag:
 
     def __init__(self, params):
         self.params = params
@@ -65,10 +65,9 @@ class PomdpRunnerInteractive:
         ++++++++++++++++++++++
             Starting State:  {}
             Starting Budget:  {}
-            Init Belief: {}
             Time Horizon: {}
             Max Play: {}
-        ++++++++++++++++++++++'''.format(model.curr_state, budget, belief, T, params.max_play))
+        ++++++++++++++++++++++'''.format(model.curr_state, budget, T, params.max_play))
 
         for i in range(params.max_play):
             # plan, take action and receive environment feedbacks
@@ -92,13 +91,16 @@ class PomdpRunnerInteractive:
               'Reward: {}'.format(reward),
               'Budget: {}'.format(budget),
               'New state: {}'.format(new_state),
-              'New Belief: {}'.format(belief),
+             ## 'New Belief: {}'.format(belief),
               '=' * 20
             ]))
 
             if budget <= 0:
                 log.info('Budget spent.')
-			
+                
+            if action == 'Catch' and ('tagged' in new_state):
+                break
+            
             input("Pulsa intro para ejecutar el siguiente paso del algoritmo")
 
 
